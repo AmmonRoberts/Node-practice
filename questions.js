@@ -1,26 +1,14 @@
-const questions = ["What is your name?", "What is your favorite color?", "How old are you?"]
+const collectAnswers = require("./lib/collectAnswers")
 
-const ask = (i = 0) => {
-    process.stdout.write(`\n\n\n$${questions[i]}`)
-    process.stdout.write(` > `)
-}
+const questions = ["What is your name? ", "What is your favorite color? ", "How old are you? "];
 
-ask()
+const answerEvents = collectAnswers(questions)
 
-const answers = [];
-process.stdin.on("data", data => {
-    answers.push(data.toString().trim());
+answerEvents.on("answer", answer => console.log(`Question answered: ${answer}`))
 
-    if (answers.length < questions.length) {
-        ask(answers.length);
-    } else process.exit();
-});
-
-process.on('exit', () => {
-    const [name, activity, lang] = answers;
-    console.log(`
-${name}
-${activity}
-${lang}
-`)
+answerEvents.on("complete", answers => {
+    console.log("Your answers are: ");
+    console.log(answers);
 })
+
+answerEvents.on("complete", () => process.exit())
