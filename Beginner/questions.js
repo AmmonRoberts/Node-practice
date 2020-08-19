@@ -1,4 +1,4 @@
-const collectAnswers = require("./lib/collectAnswers")
+const collectAnswers = require("./Beginner/lib/collectAnswers")
 
 const questions = ["What is your name? ", "What is your favorite color? ", "How old are you? "];
 
