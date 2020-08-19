@@ -4,7 +4,7 @@ const questions = ["What is your name? ", "What is your favorite color? ", "How 
 
 const answerEvents = collectAnswers(questions)
 
-answerEvents.on("answer", answer => console.log(`Question answered: ${answer}`))
+answerEvents.on("answer", answer => console.log(`\nQuestion answered: ${answer}`))
 
 answerEvents.on("complete", answers => {
     console.log("Your answers are: ");
